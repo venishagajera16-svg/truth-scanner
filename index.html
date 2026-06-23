@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Dreamy News Detector</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: dreamyGradient 20s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes dreamyGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 100px;
+            opacity: 0.6;
+            animation: float 25s infinite ease-in-out;
+        }
+        
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 100px;
+        }
+        
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            left: 10%;
+        }
+        
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+        
+        .cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+        
+        .cloud2 {
+            width: 120px;
+            height: 50px;
+            top: 70%;
+            right: 15%;
+            animation-delay: -8s;
+        }
+        
+        .cloud2::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+        
+        .cloud2::after {
+            width: 70px;
+            height: 50px;
+            top: -20px;
+            right: 15px;
+        }
+        
+        .cloud3 {
+            width: 80px;
+            height: 35px;
+            bottom: 15%;
+            left: 20%;
+            animation-delay: -15s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            33% { transform: translateX(30px) translateY(-20px); }
+            66% { transform: translateX(-20px) translateY(10px); }
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .star1 { top: 15%; left: 25%; animation-delay: 0s; }
+        .star2 { top: 25%; left: 80%; animation-delay: 0.5s; }
+        .star3 { top: 60%; left: 15%; animation-delay: 1s; }
+        .star4 { top: 80%; left: 70%; animation-delay: 1.5s; }
+        .star5 { top: 40%; left: 90%; animation-delay: 2s; }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            padding: 50px 40px;
+            border-radius: 35px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            z-index: 10;
+            animation: dreamyFade 1s ease;
+        }
+        
+        @keyframes dreamyFade {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 0 4px 30px rgba(255, 255, 255, 0.5);
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 35px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 160px;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            border-radius: 22px;
+            font-size: 16px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            resize: none;
+            transition: all 0.4s;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3),
+                        inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+        
+        button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            color: #764ba2;
+            border: none;
+            border-radius: 22px;
+            font-size: 19px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: all 0.4s;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+            background: white;
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        .result {
+            text-align: center;
+            margin-top: 30px;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes popIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.5) rotate(-5deg); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1) rotate(0deg); 
+            }
+        }
+        
+        .result-label {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .result-value {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 18px;
+            font-size: 22px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+        }
+        
+        .fake {
+            background: rgba(255, 107, 129, 0.5);
+            border: 2px solid rgba(255, 107, 129, 1);
+            color: white;
+            box-shadow: 0 0 40px rgba(255, 107, 129, 0.6);
+        }
+        
+        .real {
+            background: rgba(95, 211, 188, 0.5);
+            border: 2px solid rgba(95, 211, 188, 1);
+            color: white;
+            box-shadow: 0 0 40px rgba(95, 211, 188, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+    
+    <div class="container">
+        <h1>Truth scanner</h1>
+        <p class="subtitle"Detect fake news☁️</p>
+        <form method="post" action="/predict">
+            <textarea name="news" placeholder="Paste your news here, dreamer...">{{ text }}</textarea>
+            <button type="submit">✨ Check the Vibe ✨</button>
+        </form>
+        {% if prediction_text %}
+        <div class="result">
+            <div class="result-label">✨ Your Result ✨</div>
+            {% if "FAKE" in prediction_text %}
+                <div class="result-value fake">{{ prediction_text }}</div>
+            {% else %}
+                <div class="result-value real">{{ prediction_text }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
