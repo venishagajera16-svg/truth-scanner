@@ -2,3 +2,4 @@ fastapi
 uvicorn
 scikit-learn
 python-multipart
+gunicorn  ← Ye add kar
